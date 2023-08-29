@@ -1,84 +1,148 @@
-import { useState } from 'react'
-
+import { useState } from "react";
+//import React from 'react'
 import './App.css'
+//import Formm from './components/Formm'
+/*import pizza from '../src/assets/olives.jpg'
+import Card from './components/Card' */
+/*import { SearchBar } from './components/search/Searchbar'
+import { SearchResultList } from "./components/search/SearchResultList";*/
+{/*import { createPortal } from "react-dom";
+import { Modal } from "./components/modal/Modal";*/}
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/navbar/Navbar";
+import { About, Contact, Home, Services } from "./pages";
 
-function App() {
-  const [values, setValues] = useState({
-    firstName:" " ,
-    lastName: " " ,
-    email :" ",
-
-  });
-
-  const [submitted ,setSubmitted] = useState(false);
-  const [valid ,setValid] = useState( false)
-
-  const handleFirstNameInputChange = (event) => {
-    setValues ({...values ,firstName : event.target.value})
-  };
-  const handleLastNameInputChange = (event) => {
-    setValues ({...values ,lastName : event.target.value})
-  };
-  const handleEmailInputChange = (event) => {
-    setValues ({...values ,firstName : event.target.value})
-  };
-
-  const handleSubmit = (event) => {
-   event.preventDefault ();
-   if (values.firstName &&values .lastName && values .email) {
-    setValid(true);
-    
-   }
-   setSubmitted(true);
-  };
-
-
+//---CONTACT FORM---//
+{/*
+const App = () => {
   return (
-  <div className='form-container'>
-        <form className="register-form">
-        {/* Uncomment the next line to show the success message */}
-        { submitted && valid ? <div className="success-message">Success! Thank you for registering</div> : null }
-        <input
-        onChange={handleFirstNameInputChange}
-        value={values.firstName}
-          id="first-name"
-          className="form-field"
-          type="text"
-          placeholder="First Name"
-          name="firstName"
-        />
-        {/* Uncomment the next line to show the error message */}
-        { submitted && ! values .firstName  ? <span id="first-name-error">Please enter a first name</span> : null }
-        <input
-        onChange={handleLastNameInputChange}
-         value={values.lastName}
-          id="last-name"
-          className="form-field"
-          type="text"
-          placeholder="Last Name"
-          name="lastName"
-        />
-        {/* Uncomment the next line to show the error message */}
-        { submitted && !values .lastName ?<span id="last-name-error">Please enter a last name</span> : null }
-        <input
-        onChange={handleEmailInputChange}
-         value={values.email}
-          id="email"
-          className="form-field"
-          type="text"
-          placeholder="email"
-          name="email"
-        />
-        {/* Uncomment the next line to show the error message */}
-        { submitted && !values .email ? <span id="email-error">Please enter an email address</span> : null }
-        <button className="btn" type="submit">
-          Register
-        </button>
-      </form>
-  </div>
+    <Formm/>
   )
 }
 
 export default App
+*/}
+
+
+//-----CARD COMPONENT------//
+{/*function App() {
+  return (
+    <div>
+     <Card
+        imgSrc={pizza}
+        altText='olive pizza'
+        title='Card Title'
+        description='This is a card description. Add something in details here.'
+        buttonText="Learn More"
+        link='cardPage'
+      />
+       <Card
+        imgSrc={pizza}
+        altText='olive pizza'
+        title='Card Title'
+        description='This is a card description. Add something in details here.'
+        buttonText="Learn More"
+      />
+       <Card
+        imgSrc={pizza}
+        altText='olive pizza'
+        title='Card Title'
+        description='This is a card description. Add something in details here.'
+        buttonText="Learn More"
+      />
+       <Card
+        imgSrc={pizza}
+        altText='olive pizza'
+        title='Card Title'
+        description='This is a card description. Add something in details here.'
+        buttonText="Learn More"
+      />  
+     
+      
+    </div>
+  )
+}
+
+export default App
+export { Card }
+*/}
+
+//----SEARCHBAR----//
+{/* 
+function App() {
+  const [results, setResults] = useState([]);
+
+  return (
+    <div className="App">
+      <div className="search-bar-container">
+        <SearchBar setResults={setResults} />
+        {results && results.length > 0 ? <SearchResultList results={results} /> : <p>No results found</p>}
+      </div>
+    </div>
+  );
+}
+
+export default App;
+*/}
+
+//---MODAL---//
+{/* 
+function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleButtonClick = (value) => {
+    setModalOpen(false);
+    setMessage(value);
+  };
+
+  return (
+    <div className="App">
+      {message}
+      <button className="btn btn-open" onClick={() => setModalOpen(true)}>
+        Open
+      </button>
+      {modalOpen &&
+        createPortal(
+          <Modal
+            closeModal={handleButtonClick}
+            onSubmit={handleButtonClick}
+            onCancel={handleButtonClick}
+          >
+            <h1>This is a modal</h1>
+            <br />
+            <p>This is the modal description</p>
+          </Modal>,
+          document.body
+        )}
+    </div>
+  );
+}
+
+export default App;
+*/}
+
+//---NAVBAR----//
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      </BrowserRouter>
+      
+    </div>
+  );
+}
+
+export default App;
+
+
+
 
 
